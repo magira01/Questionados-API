@@ -12,16 +12,18 @@ import ar.com.ada.api.questionados.repos.PreguntaRepository;
 @Service
 public class PreguntaService {
 
+   
     @Autowired
     PreguntaRepository repo;
 
-
-    public Pregunta buscarPreguntaPorId(Integer preguntaId){
+    public Pregunta buscarPreguntaPorId(Integer preguntaId) {
 
         Optional<Pregunta> resultado = repo.findById(preguntaId);
 
         if(resultado.isPresent())
+      
             return resultado.get();
+
 
 
         return null;
@@ -30,5 +32,8 @@ public class PreguntaService {
     public List<Pregunta> traerPreguntas() {
         return repo.findAll();
     }
-  
+
+    public void crearPregunta(Pregunta pregunta) {
+        repo.save(pregunta);
+    }
 }
